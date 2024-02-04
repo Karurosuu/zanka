@@ -1,0 +1,482 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;600;700&family=Karla:wght@300;400&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  Configurações padrões para facilitar o desenvolvimento
+*/
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Fira Sans", sans-serif;
+  line-height: 1.2;
+  letter-spacing: 1.2px;
+  color: #f1f1f1;
+  font-weight: 600;
+}
+
+h3,
+h4 {
+  font-weight: 500;
+}
+
+p,
+a,
+button,
+hr,
+span,
+label {
+  font-family: "Karla", sans-serif;
+  border: 0;
+  text-decoration: none;
+  color: #d7d7d7;
+  outline: none;
+}
+
+p {
+  line-height: 1.5;
+  letter-spacing: -0.8px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+/* Adicionado para reduzir repetições */
+div > a,
+li > a,
+li > a::after {
+  transition: color 300ms ease-out, width 300ms ease;
+}
+
+body {
+  background-color: #2e2f34;
+  font-size: 1em;
+}
+
+/* Adicionafo para reduzir repetições */
+/* 
+  Criando o header e seu nav bar basico, pois o 
+  designer não deu a fonte e efeitos.
+*/
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 10%;
+}
+#header h1 {
+  font-size: 1.8em;
+}
+#header h1 span {
+  color: #da9b3a;
+}
+#header #nav {
+  display: flex;
+  align-items: center;
+}
+#header #nav ul li {
+  display: inline-block;
+  padding: 0 1.5rem;
+}
+#header #nav ul li:last-child {
+  border-right: 3px solid #373737;
+}
+#header #nav ul li a {
+  color: #f1f1f1;
+  position: relative;
+}
+#header #nav ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: #da9b3a;
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+}
+#header #nav ul li:hover a::after {
+  width: 100%;
+}
+#header #nav .nav-social a {
+  padding: 0 0.2rem;
+  margin-left: 0.6rem;
+}
+#header #nav .nav-social a:hover {
+  color: #da9b3a;
+}
+
+/*
+  Dando inicio ao layout da primeira seção
+*/
+#banner {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 8%;
+}
+#banner .presentation {
+  width: 15%;
+}
+#banner .presentation h2 {
+  font-size: 3em;
+}
+#banner .presentation h2 span {
+  color: #da9b3a;
+}
+#banner .presentation hr {
+  width: 4rem;
+  height: 3px;
+  background-color: #da9b3a;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+#banner .presentation ul li {
+  display: inline-block;
+  margin: 0.2rem;
+}
+#banner .presentation ul li:not(:last-child):nth-child(odd) {
+  padding-right: 0.4rem;
+  border-right: 2px solid #373737;
+}
+#banner .presentation a button {
+  background-color: transparent;
+  padding: 0.8rem 1.5rem;
+  color: #da9b3a;
+  border: 2px solid #da9b3a;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  border-radius: 0.2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 3rem;
+  transition: background-color 300ms ease;
+}
+#banner .presentation a button:hover {
+  background-color: #da9b3a;
+  color: #34353a;
+}
+#banner .skill {
+  max-width: 35%;
+}
+#banner .skill p span {
+  color: #da9b3a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+#banner .skill h3 {
+  font-size: 2.5em;
+  max-width: 70%;
+  padding: 0.4rem 0;
+}
+#banner .skill a {
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  line-height: 5;
+  vertical-align: middle;
+  letter-spacing: 1px;
+  color: #da9b3a;
+}
+#banner .skill a i {
+  margin-left: 0.5rem;
+}
+#banner .pagination {
+  color: #d7d7d7;
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+}
+#banner .pagination span {
+  padding: 0 1rem;
+  line-height: 2;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+}
+#banner .pagination span .fa-arrow-left,
+#banner .pagination span .fa-arrow-right {
+  cursor: pointer;
+}
+#banner .pagination span .fa-arrow-left:hover,
+#banner .pagination span .fa-arrow-right:hover {
+  color: #da9b3a;
+}
+#banner .image-section {
+  background-color: #34353a;
+  width: 300px;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -200px;
+}
+
+/* Usando flexbox para criar items informativos */
+/* Seletor .title-section usando em todas as seções */
+.title-section {
+  text-align: center;
+  padding-top: 10%;
+  padding-inline: 25%;
+}
+.title-section p span {
+  color: #da9b3a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.title-section h2 {
+  font-size: 2em;
+  padding: 0.5rem 0;
+}
+
+section {
+  padding: 0 10%;
+}
+
+#services {
+  background-color: #34353a;
+}
+#services .services-items {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2rem;
+  padding: 5%;
+}
+#services .services-items > div {
+  width: calc(25% - 2rem);
+  height: 450px;
+  text-align: center;
+}
+#services .services-items > div h4 {
+  padding-top: 2rem;
+  padding-bottom: 0.2rem;
+  font-size: 1.6em;
+  color: #da9b3a;
+}
+#services .services-items > div .services-item-info {
+  display: grid;
+  place-content: center;
+  background-color: #2e2f34;
+  height: 70%;
+}
+#services .services-items > div .services-item-info i {
+  font-size: 3em;
+  color: #f1f1f1;
+  margin-bottom: 1rem;
+}
+#services .services-items > div .services-item-info h3 {
+  padding-bottom: 0.3em;
+}
+
+#portfolio,
+#last-news,
+#contact {
+  padding-bottom: 10%;
+}
+
+#portfolio .nav-portfolio ul {
+  text-align: center;
+  margin-top: 2rem;
+  height: 2.5rem;
+}
+#portfolio .nav-portfolio ul li {
+  display: inline-block;
+}
+#portfolio .nav-portfolio ul li label {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-inline: 1rem;
+}
+#portfolio .nav-portfolio ul li label::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  position: absolute;
+  bottom: -1rem;
+  left: -0.2rem;
+  background-color: #da9b3a;
+  transition: left 250ms ease;
+}
+#portfolio .nav-portfolio ul li input {
+  appearance: none;
+}
+#portfolio .nav-portfolio ul li input:checked + label {
+  color: #da9b3a;
+}
+#portfolio .nav-portfolio ul li input:checked + label::after {
+  width: 100%;
+  left: 0;
+}
+#portfolio .grid-portfolio {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: repeat(2, 250px);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+#portfolio .grid-portfolio div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#portfolio .grid-portfolio .row-bottom {
+  grid-row: 2;
+}
+#portfolio .grid-portfolio .column {
+  grid-row: 1/3;
+}
+
+#last-news {
+  background-color: #34353a;
+  /* Criando layout com grid */
+  /* Também foi usado o display Flex para adaptar 3 itens */
+}
+#last-news .grid-last-news {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 170px);
+  gap: 2rem;
+  padding-top: 5%;
+  /* Aqui é a construção da aparencia das duas colunas maiores desta seção */
+}
+#last-news .grid-last-news .column {
+  grid-row: 1/4;
+}
+#last-news .grid-last-news .column,
+#last-news .grid-last-news .row {
+  background: #2e2f34;
+}
+#last-news .grid-last-news div {
+  position: relative;
+}
+#last-news .grid-last-news div figure img {
+  max-width: 100%;
+  height: inherit;
+  object-fit: cover;
+}
+#last-news .grid-last-news div figure .ballon-day {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background-color: #2e2f34;
+}
+#last-news .grid-last-news div figure .ballon-day p {
+  color: #da9b3a;
+}
+#last-news .grid-last-news div figure figcaption {
+  padding: 2rem 1rem;
+}
+#last-news .grid-last-news div figure figcaption h3 {
+  font-size: 1.4em;
+  color: #da9b3a;
+}
+#last-news .grid-last-news div figure figcaption p {
+  padding: 0.5rem 0;
+}
+#last-news .grid-last-news div figure figcaption a {
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  line-height: 5;
+  vertical-align: middle;
+  letter-spacing: 1px;
+  color: #da9b3a;
+}
+#last-news .grid-last-news div figure figcaption a i {
+  margin-left: 0.5rem;
+}
+#last-news .grid-last-news div figure figcaption a i {
+  font-size: 0.6em;
+}
+#last-news .grid-last-news .row figure {
+  display: flex;
+  height: 100%;
+}
+#last-news .grid-last-news .row figure img {
+  max-width: 40%;
+}
+#last-news .grid-last-news .row figure figcaption {
+  padding: 1.5rem 1rem;
+}
+#last-news .grid-last-news .row figure figcaption h3 {
+  color: #f1f1f1;
+  font-size: 1.2em;
+}
+#last-news .grid-last-news .row figure figcaption p {
+  height: 2.8rem;
+  line-height: 1.1;
+  overflow: hidden; /* remove o estouro do elemento */
+  text-overflow: ellipsis; /* adiciona “...” no final */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* quantidade de linhas */
+  -webkit-box-orient: vertical; /* conteúdo será apresentado verticalmente */
+}
+
+/* Ultima seção e é apenas uma lista com meios de contatos */
+/* Usei lista não ordenada, mas também poderia ser usado divs */
+#contact .flex-items-contact {
+  margin-top: 2rem;
+}
+#contact .flex-items-contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 10%;
+  gap: 2rem;
+}
+#contact .flex-items-contact ul li {
+  width: calc(33.33% - 2rem);
+  background-color: #34353a;
+  padding: 1rem 1.5rem;
+}
+#contact .flex-items-contact ul li a {
+  display: inline-flex;
+  align-items: center;
+  color: #da9b3a;
+}
+#contact .flex-items-contact ul li i {
+  font-size: 1.2em;
+  margin-right: 1rem;
+  color: #d7d7d7;
+}
+
+/* Nesta parte tem o botão de subir até o topo e o footer */
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 15%;
+  right: 2%;
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #da9b3a;
+  background-color: transparent;
+  color: #da9b3a;
+}
+
+#footer {
+  text-align: center;
+  padding: 2%;
+  border-top: 3px solid #da9b3a;
+}
+
+/* Diretorio SASS*/
+/*
+  sass --watch style/scss/main.scss style/css/main.css
+*/
+
+/*# sourceMappingURL=main.css.map */

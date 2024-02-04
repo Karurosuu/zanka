@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout 02</title>
+    <!-- Links de estilo -->
+    <link rel="stylesheet" href="style/css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/64b8ce3a9c.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Codigo Javascript -->
+    <script>
+      // Função para esconder a tela de carregamento e mostrar o conteúdo quando tudo estiver carregado
+      window.onload = function () {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        observeImages(); // Chama a função para observar as imagens
+        animateContent(); // Chama a função para animar o conteúdo
+      };
+
+      function observeImages() {
+        var images = document.querySelectorAll(".lazy-load"); // Seleciona todas as imagens com a classe lazy-load
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible"); // Adiciona a classe is-visible quando a imagem está visível
+              observer.unobserve(entry.target); // Deixa de observar a imagem depois de se tornar visível
+            }
+          });
+        });
+
+        images.forEach(function (image) {
+          observer.observe(image); // Começa a observar cada imagem
+        });
+      }
+
+      function animateContent() {
+        var content = document.getElementById("content");
+        content.classList.add("fade-in"); // Adiciona a classe fade-in para animar o conteúdo
+        content.addEventListener("transitionend", function () {
+          content.classList.remove("fade-in"); // Remove a classe fade-in após a animação terminar
+        });
+      }
+
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        var button = document.getElementById("scrollToTop");
+        if (
+          document.body.scrollTop > 1000 ||
+          document.documentElement.scrollTop > 1000
+        ) {
+          button.style.display = "block";
+        } else {
+          button.style.display = "none";
+        }
+      }
+
+      function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <style>
+      /* Estilos para a tela de carregamento */
+      #loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background-color: #2e2f34;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+      }
+      /* Estilos adicionais para esconder o conteúdo */
+      #content {
+        display: none;
+      }
+      .custom-loader {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: radial-gradient(farthest-side, #da9b3a 94%, #0000) top/8px
+            8px no-repeat,
+          conic-gradient(#0000 30%, #da9b3a);
+        -webkit-mask: radial-gradient(
+          farthest-side,
+          #0000 calc(100% - 8px),
+          #000 0
+        );
+        animation: s3 1s infinite linear;
+      }
+
+      @keyframes s3 {
+        100% {
+          transform: rotate(1turn);
+        }
+      }
+
+      /* Estilo para a animação */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(
+          50px
+        ); /* Inicialmente, move o conteúdo para baixo */
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      }
+
+      .fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0); /* Move o conteúdo para cima quando visível */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Tela de carregamento -->
+    <div id="loading">
+      <div class="custom-loader"></div>
+    </div>
+    <header id="header">
+      <h1>JH<span>.</span></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="#banner">Home</a></li>
+          <li><a href="#services">Portfolio</a></li>
+          <li><a href="#portfolio">Blog</a></li>
+          <li><a href="#last-news">Pag 1</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </nav>
+    </header>
+    <section id="banner">
+      <div class="presentation">
+        <h2>
+          Jack <br />
+          Harper<span>.</span>
+        </h2>
+        <hr />
+        <ul class="list-contact">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">Dribble</a></li>
+        </ul>
+        <a href="#"><button>Contrate me</button></a>
+      </div>
+      <div class="skill">
+        <p><span>Introduction</span></p>
+        <h3>UI/UX Designer, Full Stack Web Develop</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores nemo
+          hic, accusamus similique dolore atque quos voluptates molestias rerum
+          esse exercitationem, dolorum illo adipisci iste cumque quas iusto ab
+          sequi?
+        </p>
+        <a href="#">Learn more <i class="fa-solid fa-arrow-down"></i></a>
+      </div>
+      <div class="pagination">
+        <span><i class="fa-solid fa-arrow-left"></i></span
+        ><span id="number">1</span
+        ><span><i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="image-section">
+        <img src="style/img/user.png" alt="" />
+      </div>
+    </section>
+    <section id="services">
+      <!-- Todas as seções possuem um divisor com uma classe .title-section -->
+      <div class="title-section">
+        <p><span>services</span></p>
+        <h2>What I Am Great At</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          expedita repudiandae voluptatum, facere nemo neque est ea deleniti
+          praesentium, dicta, delectus nostrum ut ipsum accusantium officiis
+          molestiae modi! Nemo, ipsum?
+        </p>
+      </div>
+      <div class="services-items">
+        <div>
+          <div class="services-item-info">
+            <i class="fa-solid fa-code"></i>
+            <h3>UX/UI Design</h3>
+            <p>120 project</p>
+          </div>
+          <h4>9 +</h4>
+          <p>Year of experience</p>
+        </div>
+        <div>
+          <div class="services-item-info">
+            <i class="fa-solid fa-code"></i>
+            <h3>Web Development</h3>
+            <p>221 project</p>
+          </div>
+          <h4>200 +</h4>
+          <p>Sastifed Custumers</p>
+        </div>
+        <div>
+          <div class="services-item-info">
+            <i class="fa-solid fa-code"></i>
+            <h3>Web Research</h3>
+            <p>450 project</p>
+          </div>
+          <h4>769 +</h4>
+          <p>Design Items</p>
+        </div>
+        <div>
+          <div class="services-item-info">
+            <i class="fa-solid fa-code"></i>
+            <h3>Marketing</h3>
+            <p>331 project</p>
+          </div>
+          <h4>124 +</h4>
+          <p>Clients Served</p>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio">
+      <div class="title-section">
+        <p><span>Portfolio</span></p>
+        <h2>My Masterpiece Collection</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          expedita repudiandae voluptatum, facere nemo neque est ea deleniti
+          praesentium, dicta, delectus nostrum ut ipsum accusantium officiis
+          molestiae modi! Nemo, ipsum?
+        </p>
+      </div>
+      <div class="nav-portfolio">
+        <ul>
+          <li>
+            <input type="radio" name="menulist" id="all" checked />
+            <label for="all">All</label>
+          </li>
+          <li>
+            <input type="radio" name="menulist" id="ui" />
+            <label for="ui">ui/ux</label>
+          </li>
+          <li>
+            <input type="radio" name="menulist" id="develop" />
+            <label for="develop">develop</label>
+          </li>
+          <li>
+            <input type="radio" name="menulist" id="research" />
+            <label for="research">research</label>
+          </li>
+          <li>
+            <input type="radio" name="menulist" id="marketing" />
+            <label for="marketing">Marketing</label>
+          </li>
+        </ul>
+      </div>
+      <div class="grid-portfolio">
+        <div>
+          <img src="style/img/img1.jpg" alt="image de representação" />
+        </div>
+        <div class="row-bottom lazy-load">
+          <img src="style/img/img2.jpg" alt="image de representação" />
+        </div>
+        <div class="column">
+          <img src="style/img/img3.jpg" alt="image de representação"  class="lazy-load"/>
+        </div>
+        <div class="column">
+          <img src="style/img/img4.jpg" alt="image de representação" />
+        </div>
+      </div>
+    </section>
+    <section id="last-news">
+      <div class="title-section">
+        <p><span>Last news</span></p>
+        <h2>My Latest Articles</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          expedita repudiandae voluptatum, facere nemo neque est ea deleniti
+          praesentium, dicta, delectus nostrum ut ipsum accusantium officiis
+          molestiae modi! Nemo, ipsum?
+        </p>
+      </div>
+      <div class="grid-last-news">
+        <div class="column">
+          <figure>
+            <img src="style/img/img5.jpg" alt="image de representação" />
+            <div class="ballon-day"><p>08 Apr 2019</p></div>
+            <figcaption>
+              <h3>Welcome to jekyll! Go ahead and edit</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Dolorum quaerat architecto possimus blanditiis ipsam sed hic
+                dolores veniam, nesciunt aliquid? Ipsam molestiae, quaerat sit
+                natus iure illo nisi unde aliquam?
+              </p>
+              <a href="#"
+                >Read more <i class="fa-solid fa-chevron-right"></i
+              ></a>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="column">
+          <figure>
+            <img src="style/img/img6.jpg" alt="image de representação" />
+            <div class="ballon-day"><p>10 Mar 2019</p></div>
+            <figcaption>
+              <h3>WordPress hostin manage your growth Nullam</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Dolorum quaerat architecto possimus blanditiis ipsam sed hic
+                dolores veniam, nesciunt aliquid? Ipsam molestiae, quaerat sit
+                natus iure illo nisi unde aliquam?
+              </p>
+              <a href="#"
+                >Read more <i class="fa-solid fa-chevron-right"></i
+              ></a>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="row first-row">
+          <figure>
+            <img src="style/img/img7.jpg" alt="image de representação" />
+            <div class="ballon-day"><p>09 Mar 2019</p></div>
+            <figcaption>
+              <h3>html5 Static Site Generator for...</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Dolorum quaerat architecto possimus blanditiis ipsam sed hic
+                dolores veniam, nesciunt aliquid? Ipsam molestiae, quaerat sit
+                natus iure illo nisi unde aliquam?
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="row secund-row">
+          <figure>
+            <img src="style/img/img8.jpg" alt="image de representação" />
+            <div class="ballon-day"><p>08 Feb 2019</p></div>
+            <figcaption>
+              <h3>Just trying And Enjoying magna...</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Dolorum quaerat architecto possimus blanditiis ipsam sed hic
+                dolores veniam, nesciunt aliquid? Ipsam molestiae, quaerat sit
+                natus iure illo nisi unde aliquam?
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="row third-row">
+          <figure>
+            <img src="style/img/img9.jpg" alt="image de representação" />
+            <div class="ballon-day"><p>09 Feb 2019</p></div>
+            <figcaption>
+              <h3>Easily choose from thousan of...</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Dolorum quaerat architecto possimus blanditiis ipsam sed hic
+                dolores veniam, nesciunt aliquid? Ipsam molestiae, quaerat sit
+                natus iure illo nisi unde aliquam?
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="title-section">
+        <p><span>Contact Us</span></p>
+        <h2>Ways To contact Me</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          expedita repudiandae voluptatum, facere nemo neque est ea deleniti
+          praesentium, dicta, delectus nostrum ut ipsum accusantium officiis
+          molestiae modi! Nemo, ipsum?
+        </p>
+      </div>
+      <div class="flex-items-contact">
+        <ul>
+          <li>
+            <a href="#"
+              ><i class="fa-regular fa-envelope"></i> tecnicosup44@gmail.com</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><i class="fa-solid fa-phone"></i> +55 (79) 99991-1504</a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="fa-brands fa-instagram"></i> Alexandrepa_</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-brands fa-twitter"></i> Cracudinho</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-brands fa-tiktok"></i> cracudinho0</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    ><button type="submit" id="scrollToTop" onclick="scrollToTop()">
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
+    <footer id="footer">
+      <p>&copy; CopyRight - Carlos | All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
